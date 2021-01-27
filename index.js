@@ -15,7 +15,7 @@ const db = new Database({
 });
 
 db.connect({
-    host: process.env.QOVERY_DATABASE_STARRY_HOST,
+    host: 'localhost',
     user: process.env.QOVERY_DATABASE_STARRY_USERNAME,
     password: process.env.QOVERY_DATABASE_STARRY_PASSWORD,
     database: process.env.QOVERY_DATABASE_STARRY_NAME,
