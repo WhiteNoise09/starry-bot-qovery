@@ -23,4 +23,5 @@ fs.readdirSync(config.events_path).forEach(file => {
 <à faire>
 */
 
+console.log(process.env);
 client.login(process.env.TOKEN); // login avec token, privé
