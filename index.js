@@ -6,9 +6,12 @@ const config  = require('./config.json')
 // variables
 const client = new Discord.Client();
 
+// variables globales
+global.client = client;
+
 // récupération des events
-fs.readdirSync(config.events_path).forEach(event => {
-	const event = require(`${config.events_path}/${event}`);
+fs.readdirSync(config.events_path).forEach(file => {
+	const event = require(`${config.events_path}/${file}`);
 
 	event.once
 	? client.once(event.type, event.callback)
