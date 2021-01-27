@@ -1,0 +1,6 @@
+{
+	"events_path": "./events",
+	"commands_path": "./commands",
+
+	"prefix": "!"
+}
