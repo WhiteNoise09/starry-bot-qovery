@@ -4,7 +4,9 @@ const { Database } = require('oomysql');
 const fs 	  	   = require('fs');
 const colors  	   = require('colors');
 const utils   	   = require('./utils');
-const config  	   = require('./config.json')
+const config  	   = require('./config.json');
+
+console.log('hey');
 
 // Connection à la BDD
 const db = new Database({
