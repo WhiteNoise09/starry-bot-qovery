@@ -5,6 +5,8 @@ const colors  	   = require('colors');
 const utils   	   = require('./utils');
 const config  	   = require('./config.json');
 
+console.log('hey');
+
 // client discord
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -37,3 +39,5 @@ fs.readdirSync(config.commands_path).forEach(file => {
 });
 
 client.login(process.env.TOKEN); // login avec token, privé
+
+console.log('hey2');
