@@ -34,4 +34,4 @@ fs.readdirSync(config.commands_path).forEach(file => {
 	console.log(`registered '${command.name.magenta} command : ${file.toString().gray}'`);
 });
 
-client.login('NzkyNTAyNTM5NTcyMjE1ODA4.X-epgQ.jFrOtFIagWz2LRpJydG810fLpHM'); // login avec token, privé
+client.login(process.env.TOKEN); // login avec token, privé
