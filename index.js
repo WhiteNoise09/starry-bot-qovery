@@ -1,29 +1,9 @@
 // requires
 const Discord 	   = require('discord.js');
-const { Database } = require('oomysql');
 const fs 	  	   = require('fs');
 const colors  	   = require('colors');
 const utils   	   = require('./utils');
 const config  	   = require('./config.json');
-
-console.log('hey');
-
-// Connection à la BDD
-const db = new Database({
-    cacheTables: true,
-    pingTime: 3600000
-});
-
-db.connect({
-    host: 'localhost',
-    user: process.env.QOVERY_DATABASE_STARRY_USERNAME,
-    password: process.env.QOVERY_DATABASE_STARRY_PASSWORD,
-    database: process.env.QOVERY_DATABASE_STARRY_NAME,
-});
-
-db.on('ready', () => {
-	console.log('OMG CONNECTED')
-})
 
 // client discord
 const client = new Discord.Client();
@@ -42,7 +22,7 @@ fs.readdirSync(config.events_path).forEach(file => {
 
 	event.once
 	? client.once(event.type, event.callback)
-	: client.on(event.type, event.callback)
+	: client.on(event.type, event.callback);
 
 	SB.log(`registered '${event.type.yellow}' event : ${file.toString().gray}`);
 });
