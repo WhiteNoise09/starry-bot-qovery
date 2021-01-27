@@ -3,6 +3,10 @@ application:
   name: "starrybot"
   project: "StarryBot"
   organization: "QoveryCommunity"
+databases:
+- type: mysql # database type
+  version: "8.0.19" # database version
+  name: Starry # database name (must be unique)
 routers:
 - name: "main-starrybot"
   routes:
