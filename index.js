@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 const fs 	  = require('fs');
 const colors  = require('colors');
+const utils   = require('./utils');
 const config  = require('./config.json')
 
 // client
@@ -11,7 +12,8 @@ client.commands = new Discord.Collection();
 // namespace global
 global.SB = {
 	client: client,
-	config: config
+	config: config,
+	...utils
 }
 
 // récupération des events
@@ -22,7 +24,7 @@ fs.readdirSync(config.events_path).forEach(file => {
 	? client.once(event.type, event.callback)
 	: client.on(event.type, event.callback)
 
-	console.log(`registered '${event.type.yellow}' event : ${file.toString().gray}`);
+	SB.log(`registered '${event.type.yellow}' event : ${file.toString().gray}`);
 });
 
 // récupération des commandes
@@ -31,7 +33,7 @@ fs.readdirSync(config.commands_path).forEach(file => {
 
 	client.commands.set(command.name, command);
 
-	console.log(`registered '${command.name.magenta} command : ${file.toString().gray}'`);
+	SB.log(`registered '${command.name.magenta} command : ${file.toString().gray}'`);
 });
 
 client.login(process.env.TOKEN); // login avec token, privé
