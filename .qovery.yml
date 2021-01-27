@@ -1,0 +1,11 @@
+---
+application:
+  name: "starrybot"
+  project: "StarryBot"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-starrybot"
+  routes:
+  - application_name: "starrybot"
+    paths:
+    - "/*"
