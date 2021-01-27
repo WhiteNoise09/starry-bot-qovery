@@ -1,13 +1,18 @@
 // requires
 const Discord = require('discord.js');
 const fs 	  = require('fs');
+const colors  = require('colors');
 const config  = require('./config.json')
 
-// variables
+// client
 const client = new Discord.Client();
+client.commands = new Discord.Collection();
 
-// variables globales
-global.client = client;
+// namespace global
+global.SB = {
+	client: client,
+	config: config
+}
 
 // récupération des events
 fs.readdirSync(config.events_path).forEach(file => {
@@ -16,12 +21,17 @@ fs.readdirSync(config.events_path).forEach(file => {
 	event.once
 	? client.once(event.type, event.callback)
 	: client.on(event.type, event.callback)
+
+	console.log(`registered '${event.type.yellow}' event : ${file.toString().gray}`);
 });
 
 // récupération des commandes
-/*
-<à faire>
-*/
+fs.readdirSync(config.commands_path).forEach(file => {
+	const command = require(`${config.commands_path}/${file}`);
 
-console.log(process.env);
-client.login(process.env.TOKEN); // login avec token, privé
+	client.commands.set(command.name, command);
+
+	console.log(`registered '${command.name.magenta} command : ${file.toString().gray}'`);
+});
+
+client.login('NzkyNTAyNTM5NTcyMjE1ODA4.X-epgQ.jFrOtFIagWz2LRpJydG810fLpHM'); // login avec token, privé
