@@ -5,7 +5,7 @@ application:
   organization: "QoveryCommunity"
 databases:
 - type: mysql # database type
-  version: "8.0.19" # database version
+  version: "8.0" # database version
   name: Starry # database name (must be unique)
 routers:
 - name: "main-starrybot"

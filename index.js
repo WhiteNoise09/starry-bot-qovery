@@ -1,11 +1,29 @@
 // requires
-const Discord = require('discord.js');
-const fs 	  = require('fs');
-const colors  = require('colors');
-const utils   = require('./utils');
-const config  = require('./config.json')
+const Discord 	   = require('discord.js');
+const { Database } = require('oomysql');
+const fs 	  	   = require('fs');
+const colors  	   = require('colors');
+const utils   	   = require('./utils');
+const config  	   = require('./config.json')
 
-// client
+// Connection à la BDD
+const db = new Database({
+    cacheTables: true,
+    pingTime: 3600000
+});
+
+db.connect({
+    host: process.env.QOVERY_DATABASE_STARRY_HOST,
+    user: process.env.QOVERY_DATABASE_STARRY_USER,
+    password: process.env.QOVERY_DATABASE_STARRY_PASSWORD,
+    database: process.env.QOVERY_DATABASE_STARRY_NAME,
+});
+
+db.on('ready', () => {
+	console.log('OMG CONNECTED')
+})
+
+// client discord
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
