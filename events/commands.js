@@ -1,16 +1,19 @@
 module.exports = {
 	type: 'message',
 	callback(message) {
-		console.log(`Hey from ${__filename} !`);
 		const { prefix } = SB.config;
 		if(!message.content.startsWith(prefix)) return;
-		console.log(`Passed first condition in  ${__filename} !`);
 
 		const args = message.content.slice(prefix.length).trim().split(/ +/);
 		const commandName = args.shift().toLowerCase();
 
 		const command = SB.client.commands.get(commandName);
 
-		command.execute(message, args);
+		try {
+			command.execute(message, args);
+			SB.log(`${message.author} executed ${commandName} command successfully !`);
+		} catch(error) {
+			SB.log(`${message.author} executed ${commandName} command but an ${error.name} error occured in ${error.fileName} line ${error.lineNumber} : \n ${error.message}`);
+		}
 	}
 }
