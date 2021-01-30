@@ -1,6 +1,5 @@
 module.exports = {
 	type: 'message',
-	once: true,
 	callback(message) {
 		console.log(`Hey from ${__filename} !`);
 		const { prefix } = SB.config;
