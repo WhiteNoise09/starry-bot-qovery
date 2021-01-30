@@ -13,7 +13,7 @@ module.exports = {
 			command.execute(message, args);
 			SB.log(`${message.author} executed ${commandName} command successfully !`);
 		} catch(error) {
-			SB.log(`${message.author} executed ${commandName} command but an ${error.name} error occured in ${error.fileName} line ${error.lineNumber} : \n ${error.message}`);
+			SB.log(`${message.author} executed ${commandName} command but a ${error.name} error occured : \n ${error.message}`);
 		}
 	}
 }
