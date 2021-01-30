@@ -6,7 +6,7 @@ application:
 databases:
 - type: mysql # database type
   version: 8.0 # database version
-  name: Starry # database name (must be unique)
+  name: starry # database name (must be unique)
 routers:
 - name: "main-starrybot"
   routes:
